@@ -8,11 +8,31 @@ configurable display content.
 ---
 
 ## ✨ Features
+- Ready to use
+- Control all 8 digit of screen by input raw value (to show text or desirable characters) or input binary number < 10
+- Control all dot lights
+- Tested on Diligent Artix 7 board - 25000MHZ 
 
-- Multiplexed control of all 8 digits on the Nexys A7
-- Binary-to-7-segment decoding (hex or decimal)
-- Configurable refresh rate via clock divider
-- Active-low anode and cathode control signals
-- Fully synthesizable, no vendor-specific IP
-
+```
+entity seven_segment_display is 
+port (
+    clk : in std_logic;
+    pass_through : in std_logic_vector( 7 downto 0) :="00000000"; -- 0 for number mode (default). 1 for manually drive 
+    dp_ctrl : in std_logic_vector(7 downto 0); -- dot digit is manually drive
+    
+    digit0 : in std_logic_vector(6 downto 0) := "0000000";
+    digit1 : in std_logic_vector(6 downto 0):= "0000000";
+    digit2 : in std_logic_vector(6 downto 0):= "0000000";
+    digit3 : in std_logic_vector(6 downto 0):= "0000000";
+    digit4 : in std_logic_vector(6 downto 0):= "0000000";
+    digit5 : in std_logic_vector(6 downto 0):= "0000000";
+    digit6 : in std_logic_vector(6 downto 0):= "0000000";
+    digit7 : in std_logic_vector(6 downto 0):= "0000000";
+    
+    CA, CB, CC, CD, CE, CF, CG, DP : out std_logic;
+    AN : out std_logic_vector(7 downto 0)
+    );
+    
+end entity;
+```
 
